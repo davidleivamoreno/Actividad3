@@ -1,0 +1,42 @@
+
+<div class="container-fluid">
+<div class="form-group">
+
+<div class="col-6">
+  <div class="row bg-primary">
+      <div class="col text-center">FORMULARIO</div>
+  </div>
+<form [formGroup]="dFormulario" (ngSubmit)="enviar()" novalidate>
+  <div class="form-group">
+    <input formControlName="nombre"
+
+
+    [(ngModel)]="datosFormulario.nombre"
+    [ngClass]="{'is-invalid': !dFormulario.get('nombre')?.valid}"
+
+    class="form-control" type="text" >
+    <div *ngIf="dFormulario.controls['nombre'].errors?.['required']"
+                   class="col-8 invalid-feedback">
+                Nombre requerido.</div>
+  </div>
+  <div class="form-group">
+    <input formControlName="precio"
+    [ngClass]="{'is-invalid':!dFormulario.get('precio')?.valid}"
+    [(ngModel)]="datosFormulario.precio" type="number" class="form-control" name="precio" id="" >
+    <div *ngIf="dFormulario.controls['precio'].errors?.['min']" class="col-8 invalid-feedback" >Precio minimo =3.</div>
+
+  </div>
+<div class="form-group">
+  <input formControlName="categoria"
+
+    [ngClass]="{'is-invalid': !dFormulario.get('categoria')?.valid}"
+    class="form-control" type="text" >
+    <div *ngIf="dFormulario.controls['categoria'].errors?.['required']" class="col-8 invalid-feedback" >Categoria Requerida.</div>
+
+</div>
+  <button type="submit" [disabled]="!dFormulario.valid"  class="btn btn-primary">Enviar</button>
+
+</form>
+
+
+
